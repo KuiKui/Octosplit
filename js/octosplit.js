@@ -7,7 +7,7 @@ $(document).ready(function() {
     adjustDiffLines($(this))
   });
 
-  $('.add-bubble').bind('click', function(event) {
+  $('.add-bubble').on('click', function(event) {
     var $this = $(this);
     window.setTimeout(function() {
       adjustInlineComments($($this.parent().parent().next()));
