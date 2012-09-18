@@ -1,0 +1,17 @@
+{
+  "name": "Octosplit",
+  "version": "0.0.1",
+  "description": "Provides side by side diffs in GitHub PRs",
+  "manifest_version": 2,
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "content_scripts": [{
+    "matches": ["https://github.com/*/pull/*/files"],
+    "run_at": "document_end",
+    "css": ["css/octosplit.css"],
+    "js": ["js/vendor/jquery-1.8.1.min.js", "js/octosplit.js"]
+  }]
+}
