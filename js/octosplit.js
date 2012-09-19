@@ -11,11 +11,25 @@ $(document).ready(function() {
     var $this = $(this);
     window.setTimeout(function() {
       adjustInlineComments($($this.parent().parent().next()));
+      adjustFooter();
     }, 1500);
   });
 
   $('.inline-comments').each(function() {
     adjustInlineComments($(this));
+  });
+
+  if ($('.tabnav-tab.selected').data().containerId == 'files_bucket') {
+    adjustFooter();
+  }
+
+  $('.view-pull-request .tabnav .tabnav-tab').bind('click', function() {
+    if ($(this).data().containerId == 'files_bucket') {
+      adjustFooter();
+    }
+    else {
+      resetFooter();
+    }
   });
 });
 
@@ -56,4 +70,12 @@ function adjustDiffLines($line) {
 function adjustInlineComments($line) {
   $line.children().first().attr('colspan', 1);
   $line.children().last().attr('colspan', 3);
+}
+
+function adjustFooter() {
+  $('#footer-push').css({marginTop: $('#files_bucket').height()});
+}
+
+function resetFooter() {
+  $('#footer-push').css({marginTop: 0});
 }
