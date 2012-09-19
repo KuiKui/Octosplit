@@ -8,7 +8,7 @@
 * New file is in the right pane with additions,
 * The global size of working area is increased (relative to window size).
 
-[![](http://imageshack.us/a/img687/2623/capturedcran20120918122.png "Split diffs")](http://imageshack.us/a/img545/2623/capturedcran20120918122.png "Split diffs")
+[![](http://imageshack.us/a/img20/7669/capturedcran20120919143.png "Split diffs")](http://imageshack.us/a/img845/7669/capturedcran20120919143.png "Split diffs")
 
 ## How to install
 
@@ -20,8 +20,7 @@
 
 ## How to use
 
-* Go to PR diffs page ([example](https://github.com/fabpot/Silex/pull/488/files))
-* Reload the page
+* Just go on a PR diffs page ([example](https://github.com/fabpot/Silex/pull/488/files)).
 
 ## Warning
 
