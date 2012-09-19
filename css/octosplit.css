@@ -4,6 +4,10 @@
     left: 2%;
 }
 
+.new-number {
+  border-left: 1px solid #ddd;
+}
+
 #files_bucket #files .file .data .diff-line {
     width: auto;
 }
