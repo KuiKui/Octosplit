@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var $fileBucket   = $('#files_bucket');
+  var $footerPush   = $('#footer-push');
 
   $('table.diff-table tbody tr').each(function(index) {
     if($(this).hasClass('inline-comments')) {
@@ -16,6 +18,20 @@ $(document).ready(function() {
 
   $('.inline-comments').each(function() {
     adjustInlineComments($(this));
+  });
+
+  if ($('.tabnav-tab.selected').data().containerId == 'files_bucket') {
+    $footerPush.css({marginTop: $fileBucket.height()});
+  }
+
+  // adjust footer according to the active tab on click
+  $('.view-pull-request .tabnav .tabnav-tab').bind('click', function() {
+    if ($(this).data().containerId == 'files_bucket') {
+      $footerPush.css({marginTop: $fileBucket.height()});
+    }
+    else {
+      $footerPush.css({marginTop: 0});
+    }
   });
 });
 
