@@ -1,51 +1,38 @@
 $(document).ready(function() {
+  var $fileBucket   = $('#files_bucket');
+  var $footerPush   = $('#footer-push');
 
-    var alreadySplit = false;
-    var $fileBucket   = $('#files_bucket');
-    var $footerPush   = $('#footer-push');
-
-    // adjust diff lines
-    $('table.diff-table tbody tr', $fileBucket).each(function() {
-        if($(this).hasClass('inline-comments')) {
-            return;
-        }
-
-        adjustDiffLines($(this))
-    });
-
-    // adjust inline comments on click after 1.5s
-    $('.add-bubble', $fileBucket).on('click', function() {
-        var $this = $(this);
-        window.setTimeout(function() {
-            adjustInlineComments($($this.parent().parent().next()));
-        }, 1500);
-    });
-
-    // adjust inline comments
-    $('.inline-comments', $fileBucket).each(function() {
-        adjustInlineComments($(this));
-    });
-
-    // adjust github footer
-    if ($('.tabnav-tab.selected').data().containerId == 'files_bucket') {
-        $footerPush.css({marginTop: $fileBucket.height()});
+  $('table.diff-table tbody tr').each(function(index) {
+    if($(this).hasClass('inline-comments')) {
+      return;
     }
+    adjustDiffLines($(this))
+  });
 
-    // apply css for diff split
-    $fileBucket.css({position: 'absolute', width: '96%', left: '2%'});
-    $('.diff-line', $fileBucket).css({width: 'auto'});
+  $('.add-bubble').on('click', function(event) {
+    var $this = $(this);
+    window.setTimeout(function() {
+      adjustInlineComments($($this.parent().parent().next()));
+    }, 1500);
+  });
 
-    // adjust footer according to the active tab on click
-    $('.view-pull-request .tabnav .tabnav-tab').bind('click', function() {
-        var container = $(this).data();
+  $('.inline-comments').each(function() {
+    adjustInlineComments($(this));
+  });
 
-        if (container.containerId == 'files_bucket') {
-            $footerPush.css({marginTop: $fileBucket.height()});
-        }
-        else {
-            $footerPush.css({marginTop: 0});
-        }
-    });
+  if ($('.tabnav-tab.selected').data().containerId == 'files_bucket') {
+    $footerPush.css({marginTop: $fileBucket.height()});
+  }
+
+  // adjust footer according to the active tab on click
+  $('.view-pull-request .tabnav .tabnav-tab').bind('click', function() {
+    if ($(this).data().containerId == 'files_bucket') {
+      $footerPush.css({marginTop: $fileBucket.height()});
+    }
+    else {
+      $footerPush.css({marginTop: 0});
+    }
+  });
 });
 
 function adjustDiffLines($line) {

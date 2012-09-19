@@ -1,0 +1,9 @@
+#files_bucket {
+    position: absolute;
+    width: 96%;
+    left: 2%;
+}
+
+#files_bucket #files .file .data .diff-line {
+    width: auto;
+}
