@@ -1,7 +1,3 @@
-.container {
-  width: 95% !important;
-}
-
 .new-number {
   border-left: 1px solid #ddd;
 }
@@ -9,4 +5,14 @@
 .inline-comments .comment-holder,
 .inline-comment-form {
   max-width: none !important;
+}
+
+#files_bucket {
+    position: absolute;
+    width: 96%;
+    left: 2%;
+}
+
+#files_bucket #files .file .data .diff-line {
+    width: auto;
 }

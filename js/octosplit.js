@@ -11,11 +11,27 @@ $(document).ready(function() {
     var $this = $(this);
     window.setTimeout(function() {
       adjustInlineComments($($this.parent().parent().next()));
+      adjustFooter();
     }, 1500);
   });
 
   $('.inline-comments').each(function() {
     adjustInlineComments($(this));
+  });
+
+  if (isFilesBucketTab()) {
+    adjustFooter();
+  }
+
+  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).bind('click', function() {
+    window.setTimeout(function() {
+        if (isFilesBucketTab()) {
+          adjustFooter();
+        }
+        else {
+          resetFooter();
+        }
+    }, 500);
   });
 });
 
@@ -56,4 +72,16 @@ function adjustDiffLines($line) {
 function adjustInlineComments($line) {
   $line.children().first().attr('colspan', 1);
   $line.children().last().attr('colspan', 3);
+}
+
+function adjustFooter() {
+  $('#footer-push').css({marginTop: $('#files_bucket').height()});
+}
+
+function resetFooter() {
+  $('#footer-push').css({marginTop: 0});
+}
+
+function isFilesBucketTab() {
+  return ($('.tabnav-tab.selected').attr('href') == '#files_bucket') || ($('.tabnav-tab.selected').data().containerId == 'files_bucket');
 }
