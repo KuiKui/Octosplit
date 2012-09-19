@@ -19,17 +19,19 @@ $(document).ready(function() {
     adjustInlineComments($(this));
   });
 
-  if ($('.tabnav-tab.selected').data().containerId == 'files_bucket') {
+  if (isFilesBucketTab()) {
     adjustFooter();
   }
 
-  $('.view-pull-request .tabnav .tabnav-tab').bind('click', function() {
-    if ($(this).data().containerId == 'files_bucket') {
-      adjustFooter();
-    }
-    else {
-      resetFooter();
-    }
+  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).bind('click', function() {
+    window.setTimeout(function() {
+        if (isFilesBucketTab()) {
+          adjustFooter();
+        }
+        else {
+          resetFooter();
+        }
+    }, 500);
   });
 });
 
@@ -78,4 +80,8 @@ function adjustFooter() {
 
 function resetFooter() {
   $('#footer-push').css({marginTop: 0});
+}
+
+function isFilesBucketTab() {
+  return ($('.tabnav-tab.selected').attr('href') == '#files_bucket') || ($('.tabnav-tab.selected').data().containerId == 'files_bucket');
 }
