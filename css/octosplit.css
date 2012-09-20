@@ -13,8 +13,3 @@
 .new-number {
   border-left: 1px solid #ddd;
 }
-
-.inline-comments .comment-holder,
-.inline-comment-form {
-  max-width: none !important;
-}
