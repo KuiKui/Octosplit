@@ -57,23 +57,31 @@ function shrink() {
 }
 
 function splitDiffs() {
-  $('table.diff-table tbody tr').each(function(index) {
-    if ($(this).hasClass('inline-comments')) {
-      splitInlineComment($(this));
-    } else {
-      splitDiffLine($(this))
+  $('table.diff-table').each(function() {
+    if (isSplittable($(this))) {
+      $('tbody tr', $(this)).each(function() {
+        if ($(this).hasClass('inline-comments')) {
+          splitInlineComment($(this));
+        } else {
+          splitDiffLine($(this))
+        }
+      });
     }
-  });
+  })
 }
 
 function resetDiffs() {
-  $('table.diff-table tbody tr').each(function(index) {
-    if ($(this).hasClass('inline-comments')) {
-      resetInlineComment($(this));
-    } else {
-      resetDiffLine($(this))
+  $('table.diff-table').each(function() {
+    if (isResettable($(this))) {
+      $('tbody tr', $(this)).each(function() {
+        if ($(this).hasClass('inline-comments')) {
+          resetInlineComment($(this));
+        } else {
+          resetDiffLine($(this))
+        }
+      });
     }
-  });
+  })
 }
 
 function splitDiffLine($line) {
@@ -142,4 +150,12 @@ function resetInlineComment($line) {
 
 function isFilesBucketTab() {
   return ($('.tabnav-tab.selected').attr('href') == '#files_bucket') || ($('.tabnav-tab.selected').data().containerId == 'files_bucket');
+}
+
+function isSplittable($table) {
+  return ($('td.gd', $table).length && $('td.gi', $table).length);
+}
+
+function isResettable($table) {
+  return ($('.new-number', $table).length > 0)
 }
