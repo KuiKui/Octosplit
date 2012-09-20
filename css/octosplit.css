@@ -1,3 +1,15 @@
+.container.large {
+  width: 95%;
+}
+
+#octosplit {
+  margin-left: 5px;
+}
+
+#octosplit-label {
+  margin-left: 15px;
+}
+
 .new-number {
   border-left: 1px solid #ddd;
 }
@@ -5,14 +17,4 @@
 .inline-comments .comment-holder,
 .inline-comment-form {
   max-width: none !important;
-}
-
-#files_bucket {
-    position: absolute;
-    width: 96%;
-    left: 2%;
-}
-
-#files_bucket #files .file .data .diff-line {
-    width: auto;
 }

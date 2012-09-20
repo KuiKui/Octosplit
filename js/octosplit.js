@@ -1,41 +1,82 @@
 $(document).ready(function() {
-
-  $('table.diff-table tbody tr').each(function(index) {
-    if($(this).hasClass('inline-comments')) {
-      return;
-    }
-    adjustDiffLines($(this))
-  });
-
-  $('.add-bubble').on('click', function(event) {
-    var $this = $(this);
-    window.setTimeout(function() {
-      adjustInlineComments($($this.parent().parent().next()));
-      adjustFooter();
-    }, 1500);
-  });
-
-  $('.inline-comments').each(function() {
-    adjustInlineComments($(this));
-  });
-
-  if (isFilesBucketTab()) {
-    adjustFooter();
-  }
-
-  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).bind('click', function() {
-    window.setTimeout(function() {
-        if (isFilesBucketTab()) {
-          adjustFooter();
-        }
-        else {
-          resetFooter();
-        }
-    }, 500);
-  });
+  addCheckbox();
+  manageNewComment();
+  manageTabs();
 });
 
-function adjustDiffLines($line) {
+function addCheckbox() {
+  var $checkbox = $('<input type="checkbox" id="octosplit" />');
+  var $label    = $('<label id="octosplit-label" for="octosplit"><span class="mini-icon mini-icon-public-mirror"></span>Use <strong>side by side</strong> view</label>');
+
+  $('#toc .explain').append($label, $checkbox);
+
+  $checkbox.on('click', function(event) {
+    if ($(this).is(':checked')) {
+      enlarge();
+      splitDiffs();
+    } else {
+      shrink();
+      resetDiffs();
+    }
+  });
+}
+
+function manageNewComment() {
+  $('#files').on('click', function(event) {
+    if (!$('#octosplit').is(':checked')) {
+      return;
+    }
+
+    $elmt = $(event.target);
+    if (!$elmt.hasClass('add-bubble')) {
+      return;
+    }
+
+    window.setTimeout(function() {
+      splitInlineComment($($elmt.parent().parent().next()));
+    }, 800);
+  });
+}
+
+function manageTabs() {
+  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).on('click', function() {
+    if (isFilesBucketTab() && $('#octosplit').is(':checked')) {
+      enlarge();
+    } else {
+      shrink();
+    }
+  });
+}
+
+function enlarge() {
+  $('#wrapper .container').addClass('large');
+}
+
+function shrink() {
+  $('#wrapper .container.large').removeClass('large');
+}
+
+function splitDiffs() {
+  $('table.diff-table tbody tr').each(function(index) {
+    if ($(this).hasClass('inline-comments')) {
+      splitInlineComment($(this));
+    } else {
+      splitDiffLine($(this))
+    }
+  });
+}
+
+function resetDiffs() {
+  $('table.diff-table tbody tr').each(function(index) {
+    if ($(this).hasClass('inline-comments')) {
+      resetInlineComment($(this));
+    } else {
+      resetDiffLine($(this))
+    }
+  });
+}
+
+function splitDiffLine($line) {
   var $children = $line.children();
 
   var $oldNumber = $($children[0]);
@@ -64,22 +105,39 @@ function adjustDiffLines($line) {
 
   $newNumber.addClass('new-number');
 
+  if($oldLOC.children().first().hasClass('add-bubble')) {
+    $oldLOC.children().first().remove();
+  }
+
   $oldLOC.insertAfter($oldNumber);
   $newLOC.insertAfter($newNumber);
   $LOC.remove();
 }
 
-function adjustInlineComments($line) {
+function resetDiffLine($line) {
+  var $children = $line.children();
+
+  var $oldNumber = $($children[0]);
+  var $oldLOC    = $($children[1]);
+  var $newNumber = $($children[2]);
+  var $newLOC    = $($children[3]);
+
+  if($oldLOC.hasClass('gd')) {
+    $newLOC.html($oldLOC.html());
+    $newLOC.addClass('gd');
+  }
+
+  $oldLOC.remove();
+}
+
+function splitInlineComment($line) {
   $line.children().first().attr('colspan', 1);
   $line.children().last().attr('colspan', 3);
 }
 
-function adjustFooter() {
-  $('#footer-push').css({marginTop: $('#files_bucket').height()});
-}
-
-function resetFooter() {
-  $('#footer-push').css({marginTop: 0});
+function resetInlineComment($line) {
+  $line.children().first().attr('colspan', 2);
+  $line.children().last().attr('colspan', 1);
 }
 
 function isFilesBucketTab() {
