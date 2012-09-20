@@ -1,6 +1,11 @@
 # Octosplit
 
-**Octosplit** is an lightweight [Chrome](https://www.google.com/chrome) extension that provides side by side diffs in GitHub [PRs](https://help.github.com/articles/using-pull-requests).
+**Octosplit** is an lightweight Chrome extension that provides side by side diffs in GitHub.
+
+## How to use
+
+* Install the Octosplit [Chrome extension]()
+* Just go on a diffs page on GitHub and check the new option : ![](http://imageshack.us/a/img833/9178/octosplitbutton.png)
 
 ## What is changed
 
@@ -9,10 +14,6 @@
 * The global size of working area is increased (relative to window size).
 
 [![](http://imageshack.us/a/img62/3179/octosplit.png "Side by side diffs")](http://imageshack.us/a/img689/3179/octosplit.png "Side by side diffs")
-
-## How to use
-
-* Just go on a PR/Commit diffs page and clik on ![](http://imageshack.us/a/img820/9178/octosplitbutton.png).
 
 ## How to install for dev
 
