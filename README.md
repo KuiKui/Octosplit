@@ -8,19 +8,19 @@
 * New file is in the right pane with additions,
 * The global size of working area is increased (relative to window size).
 
-[![](http://imageshack.us/a/img20/7669/capturedcran20120919143.png "Split diffs")](http://imageshack.us/a/img845/7669/capturedcran20120919143.png "Split diffs")
+[![](http://imageshack.us/a/img62/3179/octosplit.png "Side by side diffs")](http://imageshack.us/a/img689/3179/octosplit.png "Side by side diffs")
 
-## How to install
+## How to use
+
+* Just go on a PR/Commit diffs page and clik on ![](http://imageshack.us/a/img820/9178/octosplitbutton.png).
+
+## How to install for dev
 
 * Fork the project
 * Open Tools > Extensions menu in Chrome
 * Enable _developer mode_
 * Click on _load the unpacked extension_
 * Select the path to your local copy of **Octosplit**
-
-## How to use
-
-* Just go on a PR diffs page ([example](https://github.com/fabpot/Silex/pull/488/files)).
 
 ## Warning
 
