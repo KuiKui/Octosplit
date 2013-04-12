@@ -1,6 +1,6 @@
 # Octosplit
 
-**Octosplit** is an lightweight Chrome extension that provides side by side diffs in GitHub.
+**Octosplit** is an lightweight Chrome extension that provides side by side diffs and word wrapping in GitHub.
 
 ## How to use
 
