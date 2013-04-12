@@ -1,8 +1,24 @@
 $(document).ready(function() {
+  addWordWrapChekbox();
   addCheckbox();
   manageNewComment();
   manageTabs();
 });
+
+function addWordWrapChekbox() {
+  var $checkbox = $('<input type="checkbox" id="wordwrap" />');
+  var $label    = $('<label id="wordwrap-label" for="wordwrap"><span class="mini-icon mini-icon-reorder"></span>Use <strong>word wrapped</strong> view</label>');
+
+  $('#toc .explain').append($label, $checkbox);
+
+  $checkbox.on('click', function(event) {
+    if ($(this).is(':checked')) {
+       $('#files_bucket').addClass('word-wrap');
+    } else {
+       $('#files_bucket').removeClass('word-wrap');
+    }
+  });
+}
 
 function addCheckbox() {
   var $checkbox = $('<input type="checkbox" id="octosplit" />');

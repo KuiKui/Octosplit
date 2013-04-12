@@ -1,11 +1,17 @@
+.word-wrap .diff-line-code{
+  white-space: normal;
+}
+
 .container.large {
   width: 95%;
 }
 
+#wordwrap,
 #octosplit {
   margin-left: 5px;
 }
 
+#wordwrap-label,
 #octosplit-label {
   margin-left: 15px;
 }
