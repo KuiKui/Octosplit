@@ -13,3 +13,19 @@
 .new-number {
   border-left: 1px solid #ddd;
 }
+
+.gd .diff-line-num.nd {
+  background-color: white;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+.gi .diff-line-num.nd {
+  background-color: white;
+  border-right: 1px solid #e5e5e5;
+}
+
+.gd .diff-line-code.nd,
+.gi .diff-line-code.nd {
+  background-color: white;
+}

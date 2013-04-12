@@ -28,7 +28,7 @@ function manageNewComment() {
     }
 
     $elmt = $(event.target);
-    if (!$elmt.hasClass('add-bubble')) {
+    if (!$elmt.hasClass('add-line-comment')) {
       return;
     }
 
@@ -57,7 +57,7 @@ function shrink() {
 }
 
 function splitDiffs() {
-  $('table.diff-table').each(function() {
+  $('table.file-diff').each(function() {
     if (isSplittable($(this))) {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
@@ -71,7 +71,7 @@ function splitDiffs() {
 }
 
 function resetDiffs() {
-  $('table.diff-table').each(function() {
+  $('table.file-diff').each(function() {
     if (isResettable($(this))) {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
@@ -91,19 +91,21 @@ function splitDiffLine($line) {
   var $newNumber = $($children[1]);
   var $LOC = $($children[2]);
 
-  var $oldLOC = $('<td class="diff-line"></td>');
-  var $newLOC = $('<td class="diff-line"></td>');
+  var $oldLOC = $('<td class="diff-line-code"></td>');
+  var $newLOC = $('<td class="diff-line-code"></td>');
 
-  if ($LOC.hasClass('gd')) {
+  if ($line.hasClass('gd')) {
     $oldLOC.html($LOC.html());
-    $oldLOC.addClass('gd');
+    $newLOC.addClass('nd');
+    $newNumber.addClass('nd');
     $newLOC.html('');
-  } else if ($LOC.hasClass('gi')) {
+  } else if ($line.hasClass('gi')) {
     $oldLOC.html('');
     $newLOC.html($LOC.html());
-    $newLOC.addClass('gi');
+    $oldLOC.addClass('nd');
+    $oldNumber.addClass('nd');
   } else {
-    if ($LOC.hasClass('gc')) {
+    if ($line.hasClass('gc')) {
       $oldLOC.addClass('gc');
       $newLOC.addClass('gc');
     }
@@ -130,12 +132,16 @@ function resetDiffLine($line) {
   var $newNumber = $($children[2]);
   var $newLOC    = $($children[3]);
 
-  if($oldLOC.hasClass('gd')) {
+  if($line.hasClass('gd')) {
     $newLOC.html($oldLOC.html());
-    $newLOC.addClass('gd');
   }
 
   $oldLOC.remove();
+
+  $oldNumber.removeClass('nd');
+  $oldNumber.css('border-right', 'none');
+  $newNumber.removeClass('nd');
+  $newLOC.removeClass('nd');
 }
 
 function splitInlineComment($line) {
@@ -153,7 +159,7 @@ function isFilesBucketTab() {
 }
 
 function isSplittable($table) {
-  return ($('td.gd', $table).length && $('td.gi', $table).length);
+  return ($('tr.gd', $table).length && $('tr.gi', $table).length);
 }
 
 function isResettable($table) {
