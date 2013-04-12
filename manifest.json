@@ -1,8 +1,8 @@
 {
   "name": "Octosplit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Side by side diffs in GitHub",
-  "manifest_version": 3,
+  "manifest_version": 4,
   "icons": {
     "16": "img/icon16.png",
     "48": "img/icon48.png",
