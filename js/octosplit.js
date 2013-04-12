@@ -39,12 +39,14 @@ function manageNewComment() {
 }
 
 function manageTabs() {
-  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).on('click', function() {
-    if (isFilesBucketTab() && $('#octosplit').is(':checked')) {
-      enlarge();
-    } else {
-      shrink();
-    }
+  $('.tabnav .tabnav-tab', $('.new-pull-request, .view-pull-request')).on('click', function(event) {
+    window.setTimeout(function() {
+      if (isFilesBucketTab() && $('#octosplit').is(':checked')) {
+        enlarge();
+      } else {
+        shrink();
+      }
+    }, 100);
   });
 }
 
