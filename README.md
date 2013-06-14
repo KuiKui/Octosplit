@@ -17,7 +17,7 @@
 
 ## How to install for dev
 
-* Fork the project
+* Clone the project
 * Open Tools > Extensions menu in Chrome
 * Enable _developer mode_
 * Click on _load the unpacked extension_
