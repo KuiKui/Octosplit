@@ -13,7 +13,7 @@
 * New file is in the right pane with additions,
 * The global size of working area is increased (relative to window size).
 
-[![](http://imageshack.us/a/img62/3179/octosplit.png "Side by side diffs")](http://imageshack.us/a/img689/3179/octosplit.png "Side by side diffs")
+[![](http://img18.imageshack.us/img18/5161/4m8.png "Side by side diffs")](http://img18.imageshack.us/img18/5161/4m8.png "Side by side diffs")
 
 ## How to install for dev
 
