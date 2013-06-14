@@ -1,32 +1,24 @@
 $(document).ready(function() {
   addWordWrapChekbox();
-  addCheckbox();
+  addSideBySideCheckbox();
   manageNewComment();
   manageTabs();
 });
 
 function addWordWrapChekbox() {
-  var $checkbox = $('<input type="checkbox" id="wordwrap" />');
-  var $label    = $('<label id="wordwrap-label" for="wordwrap"><span class="mini-icon mini-icon-reorder"></span>Use <strong>word wrapped</strong> view</label>');
-
-  $('#toc .explain').append($label, $checkbox);
-
-  $checkbox.on('click', function(event) {
+  var $clickFn = function(event) {
     if ($(this).is(':checked')) {
        $('#files_bucket').addClass('word-wrap');
     } else {
        $('#files_bucket').removeClass('word-wrap');
     }
-  });
+  };
+
+  addOneCheckbox('wordwrap', 'mini-icon-reorder', 'Use <strong>word wrapped</strong> view', $clickFn);
 }
 
-function addCheckbox() {
-  var $checkbox = $('<input type="checkbox" id="octosplit" />');
-  var $label    = $('<label id="octosplit-label" for="octosplit"><span class="mini-icon mini-icon-public-mirror"></span>Use <strong>side by side</strong> view</label>');
-
-  $('#toc .explain').append($label, $checkbox);
-
-  $checkbox.on('click', function(event) {
+function addSideBySideCheckbox() {
+  var $clickFn = function(event) {
     if ($(this).is(':checked')) {
       enlarge();
       splitDiffs();
@@ -34,7 +26,17 @@ function addCheckbox() {
       shrink();
       resetDiffs();
     }
-  });
+  };
+  addOneCheckbox('octosplit', 'mini-icon-public-mirror', 'Use <strong>side by side</strong> view', $clickFn);
+}
+
+function addOneCheckbox($id, $labelSpanClass, $labelInner, $clickFn) {
+  var $checkbox = $('<input type="checkbox" id="' + $id + '" />');
+  var $label    = $('<label id="' + $id + '-label" for="' + $id + '"><span class="mini-icon ' + $labelSpanClass + '"></span>' + $labelInner + '</label>');
+
+  $('#toc .explain').append($label, $checkbox);
+
+  $checkbox.on('click', $clickFn);
 }
 
 function manageNewComment() {
