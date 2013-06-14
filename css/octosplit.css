@@ -6,13 +6,11 @@
   width: 95%;
 }
 
-#wordwrap,
-#octosplit {
+.octosplit-checkbox {
   margin-left: 5px;
 }
 
-#wordwrap-label,
-#octosplit-label {
+.octosplit-label {
   margin-left: 15px;
 }
 
