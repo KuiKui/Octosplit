@@ -14,7 +14,7 @@ function addWordWrapChekbox() {
     }
   };
 
-  addOneCheckbox('wordwrap', 'mini-icon-reorder', 'Use <strong>word wrapped</strong> view', $clickFn);
+  addOneCheckbox('wordwrap', 'octicon-gift', 'Use <strong>word wrapped</strong> view', $clickFn);
 }
 
 function addSideBySideCheckbox() {
@@ -27,12 +27,12 @@ function addSideBySideCheckbox() {
       resetDiffs();
     }
   };
-  addOneCheckbox('octosplit', 'mini-icon-public-mirror', 'Use <strong>side by side</strong> view', $clickFn);
+  addOneCheckbox('octosplit', 'octicon-mirror-public', 'Use <strong>side by side</strong> view', $clickFn);
 }
 
-function addOneCheckbox($id, $labelSpanClass, $labelInner, $clickFn) {
+function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn) {
   var $checkbox = $('<input type="checkbox" id="' + $id + '" />');
-  var $label    = $('<label id="' + $id + '-label" for="' + $id + '"><span class="mini-icon ' + $labelSpanClass + '"></span>' + $labelInner + '</label>');
+  var $label    = $('<label id="' + $id + '-label" for="' + $id + '"><span class="octicon ' + $labelSpanClasses + '"></span>' + $labelInner + '</label>');
 
   $('#toc .explain').append($label, $checkbox);
 
