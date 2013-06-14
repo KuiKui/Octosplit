@@ -1,32 +1,29 @@
 $(document).ready(function() {
-  addWordWrapChekbox();
-  addCheckbox();
+  addAllTheCake();
   manageNewComment();
   manageTabs();
 });
 
-function addWordWrapChekbox() {
-  var $checkbox = $('<input type="checkbox" id="wordwrap" />');
-  var $label    = $('<label id="wordwrap-label" for="wordwrap"><span class="mini-icon mini-icon-reorder"></span>Use <strong>word wrapped</strong> view</label>');
+function addAllTheCake() {
+  addWordWrapCheckbox();
+  addSideBySideCheckbox();
+  addWhitespaceCheckbox();
+}
 
-  $('#toc .explain').append($label, $checkbox);
-
-  $checkbox.on('click', function(event) {
+function addWordWrapCheckbox() {
+  var $clickFn = function(event) {
     if ($(this).is(':checked')) {
        $('#files_bucket').addClass('word-wrap');
     } else {
        $('#files_bucket').removeClass('word-wrap');
     }
-  });
+  };
+
+  addOneCheckbox('wordwrap', 'octicon-gift', 'Word wrap', $clickFn, false);
 }
 
-function addCheckbox() {
-  var $checkbox = $('<input type="checkbox" id="octosplit" />');
-  var $label    = $('<label id="octosplit-label" for="octosplit"><span class="mini-icon mini-icon-public-mirror"></span>Use <strong>side by side</strong> view</label>');
-
-  $('#toc .explain').append($label, $checkbox);
-
-  $checkbox.on('click', function(event) {
+function addSideBySideCheckbox() {
+  var $clickFn = function(event) {
     if ($(this).is(':checked')) {
       enlarge();
       splitDiffs();
@@ -34,7 +31,29 @@ function addCheckbox() {
       shrink();
       resetDiffs();
     }
-  });
+  };
+  addOneCheckbox('octosplit', 'octicon-mirror-public', 'Side by side', $clickFn, false);
+}
+
+function addWhitespaceCheckbox() {
+  var $clickFn = function(event) {
+    if ($(this).is(':checked')) {
+      removeWhitespaceParam();
+    } else {
+      addWhitespaceParam();
+    }
+  };
+  addOneCheckbox('whitespace', 'octicon-telescope', 'Whitespace', $clickFn, !hasWhitespaceParam()); // hasWhitespaceParam tell us that we should ignore whitespace, so checkmark is inverse
+}
+
+function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked) {
+  var $checkedStr = $checked ? 'checked' : '';
+  var $checkbox = $('<input type="checkbox" id="' + $id + '" ' + $checkedStr +' class="octosplit-checkbox" />');
+  var $label    = $('<label id="' + $id + '-label" for="' + $id + '" class="octosplit-label"><span class="octicon ' + $labelSpanClasses + '"></span><strong>' + $labelInner + '</strong></label>');
+
+  $('#toc .explain').append($label, $checkbox);
+
+  $checkbox.on('click', $clickFn);
 }
 
 function manageNewComment() {
@@ -182,4 +201,55 @@ function isSplittable($table) {
 
 function isResettable($table) {
   return ($('.new-number', $table).length > 0)
+}
+
+
+function hasWhitespaceParam() {
+  return getURLParameter('w') !== null; // Right now w can have any value as long is present gh will remove whitespace
+}
+
+function removeWhitespaceParam() {
+  document.location = removeParameter(document.location.search, 'w');
+}
+
+function addWhitespaceParam() {
+  if (!hasWhitespaceParam()) {
+    insertParameter('w', '1');
+  }
+}
+
+// Some Utility methods
+// Barely based on http://stackoverflow.com/questions/486896/adding-a-parameter-to-the-url-with-javascript
+function insertParameter(key, value) {
+  key = encodeURIComponent(key); value = encodeURIComponent(value);
+
+  var s = removeParameter(document.location.search, key); // We remove it in case is there already
+  var kvp = key+"="+value;
+
+  s += (s.indexOf('?') !== -1 ? '&' : '?') + kvp;
+
+  document.location.search = s;
+}
+// Stolen from http://stackoverflow.com/questions/1634748/how-can-i-delete-a-query-string-parameter-in-javascript
+function removeParameter(url, parameter) {
+  var urlparts= url.split('?');
+
+  if (urlparts.length>=2) {
+    var urlBase=urlparts.shift(); //get first part, and remove from array
+    var queryString=urlparts.join("?"); //join it back up
+
+    var prefix = encodeURIComponent(parameter)+'=';
+    var pars = queryString.split(/[&;]/g);
+    if (pars.length > 0) {
+      for (var i= pars.length; i-->0;)               //reverse iteration as may be destructive
+        if (pars[i].lastIndexOf(prefix, 0)!==-1)   //idiom for string.startsWith
+          pars.splice(i, 1);
+      url = urlBase+'?'+pars.join('&');
+    }
+  }
+  return url;
+}
+// From http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(document.location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
