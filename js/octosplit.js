@@ -32,8 +32,8 @@ function addSideBySideCheckbox() {
 
 function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked) {
   var $checkedStr = $checked ? 'checked' : '';
-  var $checkbox = $('<input type="checkbox" id="' + $id + '" ' + $checkedStr +' />');
-  var $label    = $('<label id="' + $id + '-label" for="' + $id + '"><span class="octicon ' + $labelSpanClasses + '"></span><strong>' + $labelInner + '</strong></label>');
+  var $checkbox = $('<input type="checkbox" id="' + $id + '" ' + $checkedStr +' class="octosplit-checkbox" />');
+  var $label    = $('<label id="' + $id + '-label" for="' + $id + '" class="octosplit-label"><span class="octicon ' + $labelSpanClasses + '"></span><strong>' + $labelInner + '</strong></label>');
 
   $('#toc .explain').append($label, $checkbox);
 
