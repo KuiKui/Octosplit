@@ -1,12 +1,16 @@
 $(document).ready(function() {
-  addWordWrapChekbox();
-  addSideBySideCheckbox();
-  addWhitespaceCheckbox();
+  addAllTheCake();
   manageNewComment();
   manageTabs();
 });
 
-function addWordWrapChekbox() {
+function addAllTheCake() {
+  addWordWrapCheckbox();
+  addSideBySideCheckbox();
+  addWhitespaceCheckbox();
+}
+
+function addWordWrapCheckbox() {
   var $clickFn = function(event) {
     if ($(this).is(':checked')) {
        $('#files_bucket').addClass('word-wrap');
