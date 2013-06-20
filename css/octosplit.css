@@ -2,6 +2,15 @@
   white-space: normal;
 }
 
+.kill-the-chrome .container.large {
+  width: 98%;
+}
+
+.kill-the-chrome .container.large .repository-content {
+  width: 95%
+}
+
+/* old repository version */
 .container.large {
   width: 95%;
 }
