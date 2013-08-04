@@ -86,11 +86,11 @@ function manageTabs() {
 }
 
 function enlarge() {
-  $('#wrapper .container').addClass('large');
+  $('.wrapper .container').addClass('large');
 }
 
 function shrink() {
-  $('#wrapper .container.large').removeClass('large');
+  $('.wrapper .container.large').removeClass('large');
 }
 
 function splitDiffs() {
