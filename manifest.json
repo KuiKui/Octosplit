@@ -1,6 +1,6 @@
 {
   "name": "Octosplit",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Side by side diffs and word wrapping in GitHub",
   "manifest_version": 2,
   "icons": {
