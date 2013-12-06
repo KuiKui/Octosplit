@@ -213,7 +213,7 @@ function isFilesBucketTab() {
 }
 
 function isSplittable($table) {
-  return ($('tr.gd', $table).length && $('tr.gi', $table).length);
+  return ($('tr.gd', $table).length || $('tr.gi', $table).length);
 }
 
 function isResettable($table) {
