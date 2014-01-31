@@ -1,5 +1,6 @@
 $(document).ready(function() {
   addAllTheCake();
+  watchForPageChanges();
   manageNewComment();
   manageTabs();
 });
@@ -54,6 +55,22 @@ function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked)
   $('#toc .explain').append($label, $checkbox);
 
   $checkbox.on('click', $clickFn);
+}
+
+function watchForPageChanges() {
+  var pjaxContainer = $("#js-repo-pjax-container");
+  if (pjaxContainer.size() == 0) {
+    return;
+  }
+  var currentToc = $("#toc").get(0);
+  var observer = new MutationObserver(function(records) {
+    var newToc = $("#toc").get(0);
+    if (newToc != currentToc) {
+      addAllTheCake();
+      currentToc = newToc;
+    }
+  });
+  observer.observe(pjaxContainer.get(0), {childList: true, subtree: true});
 }
 
 function manageNewComment() {
@@ -196,7 +213,7 @@ function isFilesBucketTab() {
 }
 
 function isSplittable($table) {
-  return ($('tr.gd', $table).length && $('tr.gi', $table).length);
+  return ($('tr.gd', $table).length || $('tr.gi', $table).length);
 }
 
 function isResettable($table) {

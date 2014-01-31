@@ -14,7 +14,8 @@
       "*://*.net/*/*/pull/*", "*://*.net/*/*/commit/*", "*://*.net/*/*/compare/*",
       "*://*.org/*/*/pull/*", "*://*.org/*/*/commit/*", "*://*.org/*/*/compare/*",
       "*://*.fr/*/*/pull/*", "*://*.fr/*/*/commit/*", "*://*.fr/*/*/compare/*",
-      "*://*/*/*/pull/*", "*://*/*/*/commit/*", "*://*/*/*/compare/*"
+      "*://*/*/*/pull/*", "*://*/*/*/commit/*", "*://*/*/*/compare/*",
+      "https://github.com/*/*"
     ],
     "run_at": "document_end",
     "css": ["css/octosplit.css"],
