@@ -18,7 +18,7 @@
       "https://github.com/*/*"
     ],
     "run_at": "document_end",
-    "css": ["css/octosplit.css"],
-    "js": ["js/vendor/jquery-1.9.1.min.js", "js/octosplit.js"]
+    "css": ["data/css/octosplit.css"],
+    "js": ["data/js/vendor/jquery-1.9.1.min.js", "data/js/octosplit.js"]
   }]
 }
