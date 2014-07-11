@@ -1,7 +1,7 @@
 {
   "name": "octosplit",
   "title": "Octosplit",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Side by side diffs and word wrapping in GitHub and GitHub Enterprise",
   "id": "jid1-rPUEHw7klS6vcA",
   "author": "Denis Roussel",
