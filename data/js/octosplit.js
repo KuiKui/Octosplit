@@ -52,7 +52,7 @@ function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked)
   var $checkbox = $('<input type="checkbox" id="' + $id + '" ' + $checkedStr +' class="octosplit-checkbox" />');
   var $label    = $('<label id="' + $id + '-label" for="' + $id + '" class="octosplit-label"><span class="octicon ' + $labelSpanClasses + '"></span><strong>' + $labelInner + '</strong></label>');
 
-  $('#toc .explain').append($label, $checkbox);
+  $('#toc .toc-diff-stats').append($label, $checkbox);
 
   $checkbox.on('click', $clickFn);
 }
