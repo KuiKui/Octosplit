@@ -14,9 +14,9 @@ function addAllTheCake() {
 function addWordWrapCheckbox() {
   var $clickFn = function(event) {
     if ($(this).is(':checked')) {
-       $('#files_bucket').addClass('word-wrap');
+       $('#files .data').addClass('word-wrap');
     } else {
-       $('#files_bucket').removeClass('word-wrap');
+       $('#files .data').removeClass('word-wrap');
     }
   };
 
@@ -52,7 +52,7 @@ function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked)
   var $checkbox = $('<input type="checkbox" id="' + $id + '" ' + $checkedStr +' class="octosplit-checkbox" />');
   var $label    = $('<label id="' + $id + '-label" for="' + $id + '" class="octosplit-label"><span class="octicon ' + $labelSpanClasses + '"></span><strong>' + $labelInner + '</strong></label>');
 
-  $('#toc .explain').append($label, $checkbox);
+  $('#toc .toc-diff-stats').append($label, $checkbox);
 
   $checkbox.on('click', $clickFn);
 }
