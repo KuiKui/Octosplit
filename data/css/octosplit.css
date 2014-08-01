@@ -1,4 +1,10 @@
-.word-wrap .diff-line-code{
+.toc-diff-stats label.octosplit-label .octicon {
+  float: none;
+  margin-left: 0px;
+  margin-right: 3px;
+}
+
+.word-wrap .diff-line-code {
   white-space: normal;
 }
 
