@@ -44,7 +44,7 @@ function addNoWhitespaceCheckbox() {
       removeNoWhitespaceParam();
     }
   };
-  addOneCheckbox('whitespace', 'octicon-telescope', 'No whitespace', $clickFn, hasNoWhitespaceParam());
+  addOneCheckbox('no-whitespace', 'octicon-telescope', 'No whitespace', $clickFn, hasNoWhitespaceParam());
 }
 
 function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked) {
