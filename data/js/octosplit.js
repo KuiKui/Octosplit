@@ -226,7 +226,7 @@ function hasNoWhitespaceParam() {
 }
 
 function removeNoWhitespaceParam() {
-  document.location = removeParameter(document.location.search, 'w');
+  document.location = removeParameter(document.location.href, 'w');
 }
 
 function addNoWhitespaceParam() {
@@ -264,6 +264,12 @@ function removeParameter(url, parameter) {
       url = urlBase+'?'+pars.join('&');
     }
   }
+
+  // remove trailing ?
+  if(url.substr(-1) == '?') {
+    url = url.substr(0, url.length - 1);
+  }
+
   return url;
 }
 // From http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
