@@ -8,7 +8,7 @@ $(document).ready(function() {
 function addAllTheCake() {
   addWordWrapCheckbox();
   addSideBySideCheckbox();
-  addWhitespaceCheckbox();
+  addNoWhitespaceCheckbox();
 }
 
 function addWordWrapCheckbox() {
@@ -36,15 +36,15 @@ function addSideBySideCheckbox() {
   addOneCheckbox('octosplit', 'octicon-mirror-public', 'Side by side', $clickFn, false);
 }
 
-function addWhitespaceCheckbox() {
+function addNoWhitespaceCheckbox() {
   var $clickFn = function(event) {
     if ($(this).is(':checked')) {
-      removeWhitespaceParam();
+      addNoWhitespaceParam();
     } else {
-      addWhitespaceParam();
+      removeNoWhitespaceParam();
     }
   };
-  addOneCheckbox('whitespace', 'octicon-telescope', 'Whitespace', $clickFn, !hasWhitespaceParam()); // hasWhitespaceParam tell us that we should ignore whitespace, so checkmark is inverse
+  addOneCheckbox('whitespace', 'octicon-telescope', 'No whitespace', $clickFn, hasNoWhitespaceParam());
 }
 
 function addOneCheckbox($id, $labelSpanClasses, $labelInner, $clickFn, $checked) {
@@ -221,16 +221,16 @@ function isResettable($table) {
 }
 
 
-function hasWhitespaceParam() {
+function hasNoWhitespaceParam() {
   return getURLParameter('w') !== null; // Right now w can have any value as long is present gh will remove whitespace
 }
 
-function removeWhitespaceParam() {
+function removeNoWhitespaceParam() {
   document.location = removeParameter(document.location.search, 'w');
 }
 
-function addWhitespaceParam() {
-  if (!hasWhitespaceParam()) {
+function addNoWhitespaceParam() {
+  if (!hasNoWhitespaceParam()) {
     insertParameter('w', '1');
   }
 }
