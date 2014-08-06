@@ -33,18 +33,23 @@
   border-left: 1px solid #ddd;
 }
 
-.gd .diff-line-num.nd {
+.diff-line-code.nd {
+  background-color: #e5e5e5;
+}
+
+.diff-line-num-delition.nd,
+.diff-line-code-deletion.nd {
   background-color: white;
   border-left: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
 
-.gi .diff-line-num.nd {
+.diff-line-num-delition.nd,
+.diff-line-code-deletion.nd {
   background-color: white;
   border-right: 1px solid #e5e5e5;
 }
 
-.gd .diff-line-code.nd,
-.gi .diff-line-code.nd {
-  background-color: #e5e5e5;
+.diff-line-code + .diff-line-num {
+  border-left: 1px solid rgb(229, 229, 229);
 }
