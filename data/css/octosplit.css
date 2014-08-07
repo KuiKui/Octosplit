@@ -37,15 +37,15 @@
   background-color: #e5e5e5;
 }
 
-.diff-line-num-delition.nd,
+.diff-line-num-deletion.nd,
 .diff-line-code-deletion.nd {
   background-color: white;
   border-left: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
 
-.diff-line-num-delition.nd,
-.diff-line-code-deletion.nd {
+.diff-line-num-addition.nd,
+.diff-line-code-addition.nd {
   background-color: white;
   border-right: 1px solid #e5e5e5;
 }
