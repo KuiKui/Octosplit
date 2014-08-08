@@ -1,7 +1,7 @@
 {
   "name": "Octosplit",
   "version": "0.0.12",
-  "description": "Side by side diffs and word wrapping in GitHub and GitHub Enterprise",
+  "description": "Side by side diffs and word wrapping in GitHub",
   "manifest_version": 2,
   "icons": {
     "16": "img/icon16.png",
@@ -9,14 +9,7 @@
     "128": "img/icon128.png"
   },
   "content_scripts": [{
-    "matches": [
-      "*://*.com/*/*/pull/*", "*://*.com/*/*/commit/*", "*://*.com/*/*/compare/*",
-      "*://*.net/*/*/pull/*", "*://*.net/*/*/commit/*", "*://*.net/*/*/compare/*",
-      "*://*.org/*/*/pull/*", "*://*.org/*/*/commit/*", "*://*.org/*/*/compare/*",
-      "*://*.fr/*/*/pull/*", "*://*.fr/*/*/commit/*", "*://*.fr/*/*/compare/*",
-      "*://*/*/*/pull/*", "*://*/*/*/commit/*", "*://*/*/*/compare/*",
-      "https://github.com/*/*"
-    ],
+    "matches": ["https://github.com/*/*"],
     "run_at": "document_end",
     "css": ["data/css/octosplit.css"],
     "js": ["data/js/vendor/jquery-1.9.1.min.js", "data/js/octosplit.js"]
