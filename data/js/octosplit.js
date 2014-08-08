@@ -161,12 +161,6 @@ function splitDiffLine($line) {
     $oldLOC.addClass('nd');
     $oldNumber.addClass('nd');
   } else {
-    // NOTE: I'm unsure of what this was ment for.
-    //       Class gc no longer exists and nothing seems broken.
-    if ($line.hasClass('gc')) {
-      $oldLOC.addClass('gc');
-      $newLOC.addClass('gc');
-    }
     $oldLOC.html($LOC.html());
     $newLOC.html($LOC.html());
   }
