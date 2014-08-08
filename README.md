@@ -1,6 +1,8 @@
 # Octosplit
 
-**Octosplit** is a lightweight Chrome extension and Firefox add-on that provides side by side diffs and word wrapping in GitHub and GitHub Enterprise.
+**Octosplit** is a lightweight Chrome extension and Firefox add-on that provides side by side diffs and word wrapping in GitHub.
+
+*Use [Octosplit Enterprise](https://github.com/KuiKui/OctosplitEnterprise) extension with your private GitHub Enterprise instance*
 
 ## How to use
 
