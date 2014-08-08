@@ -116,6 +116,8 @@ function splitDiffs() {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
           splitInlineComment($(this));
+        } else if ($(this).hasClass('js-expandable-line')) {
+          splitExpandableLine($(this));
         } else {
           splitDiffLine($(this))
         }
@@ -130,6 +132,8 @@ function resetDiffs() {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
           resetInlineComment($(this));
+        } else if ($(this).hasClass('js-expandable-line')) {
+          resetExpandableLine($(this));
         } else {
           resetDiffLine($(this))
         }
@@ -204,6 +208,16 @@ function splitInlineComment($line) {
 function resetInlineComment($line) {
   $line.children().first().attr('colspan', 2);
   $line.children().last().attr('colspan', 1);
+}
+
+function splitExpandableLine($line) {
+  $line.children('.expandable-line-num').attr('colspan', 1);
+  $line.children('.diff-line-code-hunk').attr('colspan', 3);
+}
+
+function resetExpandableLine($line) {
+  $line.children('.expandable-line-num').attr('colspan', 2);
+  $line.children('.diff-line-code-hunk').attr('colspan', 1);
 }
 
 function isFilesBucketTab() {
