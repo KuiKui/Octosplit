@@ -148,21 +148,19 @@ function splitDiffLine($line) {
   var $oldLOC = $('<td class="diff-line-code"></td>');
   var $newLOC = $('<td class="diff-line-code"></td>');
 
-  if ($line.hasClass('gd')) {
+  if ($oldNumber.hasClass('diff-line-num-deletion')) {
     $oldLOC.html($LOC.html());
+    $oldLOC.attr('class', $LOC.attr('class'));
     $newLOC.addClass('nd');
     $newNumber.addClass('nd');
     $newLOC.html('');
-  } else if ($line.hasClass('gi')) {
+  } else if ($newNumber.hasClass('diff-line-num-addition')) {
     $oldLOC.html('');
+    $newLOC.attr('class', $LOC.attr('class'));
     $newLOC.html($LOC.html());
     $oldLOC.addClass('nd');
     $oldNumber.addClass('nd');
   } else {
-    if ($line.hasClass('gc')) {
-      $oldLOC.addClass('gc');
-      $newLOC.addClass('gc');
-    }
     $oldLOC.html($LOC.html());
     $newLOC.html($LOC.html());
   }
@@ -186,14 +184,14 @@ function resetDiffLine($line) {
   var $newNumber = $($children[2]);
   var $newLOC    = $($children[3]);
 
-  if($line.hasClass('gd')) {
+  if ($oldNumber.hasClass('diff-line-num-deletion')) {
     $newLOC.html($oldLOC.html());
+    $newLOC.attr('class', $oldLOC.attr('class'));
   }
 
   $oldLOC.remove();
 
   $oldNumber.removeClass('nd');
-  $oldNumber.css('border-right', 'none');
   $newNumber.removeClass('nd');
   $newLOC.removeClass('nd');
 }
@@ -213,7 +211,7 @@ function isFilesBucketTab() {
 }
 
 function isSplittable($table) {
-  return ($('tr.gd', $table).length || $('tr.gi', $table).length);
+  return ($('tr > td.diff-line-num-deletion', $table).length || $('tr > td.diff-line-num-addition', $table).length);
 }
 
 function isResettable($table) {
