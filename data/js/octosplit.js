@@ -213,11 +213,13 @@ function resetInlineComment($line) {
 function splitExpandableLine($line) {
   $line.children('.expandable-line-num').attr('colspan', 1);
   $line.children('.diff-line-code-hunk').attr('colspan', 3);
+  $line.children('.expandable-line-code').attr('colspan', 3);
 }
 
 function resetExpandableLine($line) {
   $line.children('.expandable-line-num').attr('colspan', 2);
   $line.children('.diff-line-code-hunk').attr('colspan', 1);
+  $line.children('.expandable-line-code').attr('colspan', 1);
 }
 
 function isFilesBucketTab() {
