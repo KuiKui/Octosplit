@@ -166,7 +166,9 @@ function splitDiffLine($line) {
     $oldNumber.addClass('nd');
   } else {
     $oldLOC.html($LOC.html());
+    $oldLOC.attr('class', $LOC.attr('class'));
     $newLOC.html($LOC.html());
+    $newLOC.attr('class', $LOC.attr('class'));
   }
 
   $newNumber.addClass('new-number');
