@@ -4,7 +4,7 @@
   margin-right: 3px;
 }
 
-.word-wrap .diff-line-code {
+.word-wrap .blob-code {
   white-space: normal;
 }
 
@@ -33,23 +33,23 @@
   border-left: 1px solid #ddd;
 }
 
-.diff-line-code.nd {
+.blob-code.nd {
   background-color: #e5e5e5;
 }
 
-.diff-line-num-deletion.nd,
-.diff-line-code-deletion.nd {
+.blob-num-deletion.nd,
+.blob-code-deletion.nd {
   background-color: white;
   border-left: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
 
-.diff-line-num-addition.nd,
-.diff-line-code-addition.nd {
+.blob-num-addition.nd,
+.blob-code-addition.nd {
   background-color: white;
   border-right: 1px solid #e5e5e5;
 }
 
-.diff-line-code + .diff-line-num {
+.blob-code + .blob-num {
   border-left: 1px solid #e5e5e5;
 }
