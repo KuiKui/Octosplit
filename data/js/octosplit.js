@@ -111,7 +111,7 @@ function shrink() {
 }
 
 function splitDiffs() {
-  $('table.file-diff').each(function() {
+  $('table.diff-table').each(function() {
     if (isSplittable($(this))) {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
@@ -127,7 +127,7 @@ function splitDiffs() {
 }
 
 function resetDiffs() {
-  $('table.file-diff').each(function() {
+  $('table.diff-table').each(function() {
     if (isResettable($(this))) {
       $('tbody tr', $(this)).each(function() {
         if ($(this).hasClass('inline-comments')) {
@@ -149,16 +149,16 @@ function splitDiffLine($line) {
   var $newNumber = $($children[1]);
   var $LOC = $($children[2]);
 
-  var $oldLOC = $('<td class="diff-line-code"></td>');
-  var $newLOC = $('<td class="diff-line-code"></td>');
+  var $oldLOC = $('<td class="blob-code blob-code-context"></td>');
+  var $newLOC = $('<td class="blob-code blob-code-context"></td>');
 
-  if ($oldNumber.hasClass('diff-line-num-deletion')) {
+  if ($oldNumber.hasClass('blob-num-deletion')) {
     $oldLOC.html($LOC.html());
     $oldLOC.attr('class', $LOC.attr('class'));
     $newLOC.addClass('nd');
     $newNumber.addClass('nd');
     $newLOC.html('');
-  } else if ($newNumber.hasClass('diff-line-num-addition')) {
+  } else if ($newNumber.hasClass('blob-num-addition')) {
     $oldLOC.html('');
     $newLOC.attr('class', $LOC.attr('class'));
     $newLOC.html($LOC.html());
@@ -190,7 +190,7 @@ function resetDiffLine($line) {
   var $newNumber = $($children[2]);
   var $newLOC    = $($children[3]);
 
-  if ($oldNumber.hasClass('diff-line-num-deletion')) {
+  if ($oldNumber.hasClass('blob-num-deletion')) {
     $newLOC.html($oldLOC.html());
     $newLOC.attr('class', $oldLOC.attr('class'));
   }
@@ -214,13 +214,13 @@ function resetInlineComment($line) {
 
 function splitExpandableLine($line) {
   $line.children('.expandable-line-num').attr('colspan', 1);
-  $line.children('.diff-line-code-hunk').attr('colspan', 3);
+  $line.children('.blob-code').attr('colspan', 3);
   $line.children('.expandable-line-code').attr('colspan', 3);
 }
 
 function resetExpandableLine($line) {
   $line.children('.expandable-line-num').attr('colspan', 2);
-  $line.children('.diff-line-code-hunk').attr('colspan', 1);
+  $line.children('.blob-code').attr('colspan', 1);
   $line.children('.expandable-line-code').attr('colspan', 1);
 }
 
@@ -229,7 +229,7 @@ function isFilesBucketTab() {
 }
 
 function isSplittable($table) {
-  return ($('tr > td.diff-line-num-deletion', $table).length || $('tr > td.diff-line-num-addition', $table).length);
+  return ($('tr > td.blob-num-deletion', $table).length || $('tr > td.blob-num-addition', $table).length);
 }
 
 function isResettable($table) {
