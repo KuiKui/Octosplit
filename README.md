@@ -1,3 +1,5 @@
+**WARNING** : *No longer relevant with GitHub’s built-in [side-by-side diff](https://github.com/blog/1884-introducing-split-diffs).*
+
 # Octosplit
 
 **Octosplit** is a lightweight Chrome extension and Firefox add-on that provides side by side diffs and word wrapping in GitHub.
